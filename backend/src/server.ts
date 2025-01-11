@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '8080');
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server abc');
+app.get('/', (_req: Request, res: Response) => {
+    res.send('Express + TypeScript Server + more watch');
 });
 
-app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`[server]: Server is running at http://localhost:${PORT}`);
 });
