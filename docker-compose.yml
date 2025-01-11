@@ -27,6 +27,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: chitchat_backend
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: chitchat_db
     depends_on:
       - db
     ports:
