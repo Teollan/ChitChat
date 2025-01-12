@@ -32,7 +32,10 @@ export default [
                     ignoreUrls: true,
                 },
             ],
-            '@typescript-eslint/no-unused-vars': ['error', { args: 'all', argsIgnorePattern: '^_' }],
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+            ],
         },
     },
 ];
