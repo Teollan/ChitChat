@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { apiRouter } from './routes/api';
 import { Request, Response } from 'express';
-import { db } from './services/db';
+import { db } from '@config/database';
 
 dotenv.config();
 

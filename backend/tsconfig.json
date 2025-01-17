@@ -7,12 +7,16 @@
         "rootDir": "./src",
         "paths": {
             "@/*": ["src/*"],
+            "@config/*": ["src/config/*"],
             "@controllers/*": ["src/controllers/*"],
             "@middlewares/*": ["src/middlewares/*"],
-            "@models/*": ["src/models/*"],
+            "@entities/*": ["src/entities/*"],
             "@routes/*": ["src/routes/*"],
             "@services/*": ["src/services/*"],
-            "@utils/*": ["src/utils/*"]
+            "@utils/*": ["src/utils/*"],
+            "@constants/*": ["src/utils/constants/*"],
+            "@schemas/*": ["src/utils/schemas/*"],
+            "@helpers/*": ["src/utils/helpers/*"]
         },
         "outDir": "./dist",
         "esModuleInterop": true,
