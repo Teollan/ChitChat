@@ -2,6 +2,7 @@ import { User } from '@entities/user';
 import { db } from '@config/database';
 import { userToUserData } from '@helpers/map/userMap';
 import { UserPatch, UserSeed } from '@/utils/types/userTypes';
+import { NotFoundError } from '@/utils/types/errorTypes';
 
 async function getUsers() {
     const users = await db.getRepository(User).find();
@@ -21,11 +22,23 @@ async function getUserById(userId: number) {
     return userToUserData(user);
 }
 
+async function getUserByEmail(userEmail: string) {
+    const user = await db.getRepository(User).findOneBy({
+        email: userEmail,
+    });
+
+    if (!user) {
+        throw new NotFoundError('User not found');
+    }
+
+    return userToUserData(user);
+}
+
 async function createUser(seed: UserSeed) {
     const user = await db.getRepository(User).create(seed);
-    const results = await db.getRepository(User).save(user);
+    const dbUser = await db.getRepository(User).save(user);
 
-    return userToUserData(results);
+    return userToUserData(dbUser);
 }
 
 async function updateUser(userId: number, patch: UserPatch) {
@@ -53,6 +66,7 @@ async function deleteUser(userId: number) {
 export const usersService = {
     getUsers,
     getUserById,
+    getUserByEmail,
     createUser,
     updateUser,
     deleteUser,

@@ -20,14 +20,14 @@ export default [
                     singleQuote: true,
                     tabWidth: 4,
                     trailingComma: 'es5',
-                    printWidth: 120,
+                    printWidth: 100,
                     arrowParens: 'always',
                 },
             ],
             'max-len': [
                 'warn',
                 {
-                    code: 120,
+                    code: 100,
                     ignoreComments: true,
                     ignoreUrls: true,
                 },

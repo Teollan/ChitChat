@@ -1,15 +1,8 @@
-import { Router, Request, Response } from 'express';
+import { authController } from '@/controllers/authController';
+import { Router } from 'express';
 
 export const authRouter = Router();
 
-authRouter.post('/login', (_: Request, res: Response) => {
-    res.status(200).json({
-        message: 'login',
-    });
-});
+authRouter.post('/login', authController.login);
 
-authRouter.post('/logout', (_: Request, res: Response) => {
-    res.status(200).json({
-        message: 'logout',
-    });
-});
+authRouter.post('/logout', authController.logout);
