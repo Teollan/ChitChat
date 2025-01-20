@@ -2,8 +2,11 @@ import { Router } from 'express';
 import { usersController } from '@/controllers/usersController';
 import { validateBody } from '@/middleware/validate';
 import { userPatchSchema, userSeedSchema } from '@/utils/schemas/userSchemas';
+import { requireAuth } from '@/middleware/requireAuth';
 
 export const usersRouter = Router();
+
+usersRouter.use(requireAuth);
 
 usersRouter.get('/', usersController.getUsers);
 

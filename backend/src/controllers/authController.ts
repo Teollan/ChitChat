@@ -1,6 +1,9 @@
 import { authService } from '@/services/authService';
+import { usersService } from '@/services/usersService';
 import { ACCESS_TOKEN } from '@/utils/constants/cookieConstants';
 import {
+    CONFLICT,
+    CREATED,
     INTERNAL_SERVER_ERROR,
     NOT_FOUND,
     OK,
@@ -8,7 +11,30 @@ import {
 } from '@/utils/constants/statusConstants';
 import { DAY } from '@/utils/constants/timeConstants';
 import { NotFoundError, UnauthorizedError } from '@/utils/types/errorTypes';
+import { UserSeed } from '@/utils/types/userTypes';
 import { Request, Response } from 'express';
+
+async function signup(req: Request, res: Response) {
+    const userSeed = req.body as UserSeed;
+
+    try {
+        const isEmailTaken = await usersService.checkIfEmailIsTaken(userSeed.email);
+
+        if (!isEmailTaken) {
+            const user = await usersService.createUser(userSeed);
+
+            res.status(CREATED).json(user);
+        } else {
+            res.status(CONFLICT).json({
+                details: 'Email already registered',
+            });
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(INTERNAL_SERVER_ERROR).json({ details: (error as Error).message });
+        }
+    }
+}
 
 async function login(req: Request, res: Response) {
     const { email, password } = req.body;
@@ -35,6 +61,7 @@ async function login(req: Request, res: Response) {
                 details: error.message,
             });
         } else if (error instanceof Error) {
+            console.error(error);
             res.status(INTERNAL_SERVER_ERROR).json({
                 details: error.message,
             });
@@ -53,4 +80,5 @@ async function logout(_: Request, res: Response) {
 export const authController = {
     login,
     logout,
+    signup,
 };

@@ -1,7 +1,7 @@
 import { api } from "./apiService";
 
 const ROUTES = {
-  SIGN_UP: "/users",
+  SIGN_UP: "/auth/signup",
 };
 
 async function signUpUser(body: {

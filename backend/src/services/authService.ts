@@ -1,9 +1,10 @@
-import { db } from '@/config/database';
-import { User } from '@/entities/user';
+import { db } from '@config/database';
+import { User } from '@entities/user';
 import bcrypt from 'bcrypt';
-import { userToUserData } from '@/utils/helpers/map/userMap';
-import { NotFoundError, UnauthorizedError } from '@/utils/types/errorTypes';
+import { userToUserData } from '@helpers/map/userMap';
+import { NotFoundError, UnauthorizedError } from '@utils/types/errorTypes';
 import jwt from 'jsonwebtoken';
+import { JWT_ACCESS_KEY } from '@constants/encryptionConstants';
 
 async function authenticateUser(email: string, password: string) {
     const users = await db.getRepository(User).find({
@@ -28,7 +29,7 @@ async function authenticateUser(email: string, password: string) {
 }
 
 function generateAccessToken(userId: number) {
-    const access = jwt.sign({ userId }, process.env.JWT_ACCESS_KEY!, {
+    const access = jwt.sign({ userId }, JWT_ACCESS_KEY!, {
         expiresIn: '1d',
     });
 

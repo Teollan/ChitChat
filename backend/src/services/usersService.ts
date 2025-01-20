@@ -34,6 +34,20 @@ async function getUserByEmail(userEmail: string) {
     return userToUserData(user);
 }
 
+async function checkIfEmailIsTaken(userEmail: string) {
+    try {
+        await getUserByEmail(userEmail);
+
+        return true;
+    } catch (error) {
+        if (error instanceof NotFoundError) {
+            return false;
+        } else {
+            throw error;
+        }
+    }
+}
+
 async function createUser(seed: UserSeed) {
     const user = await db.getRepository(User).create(seed);
     const dbUser = await db.getRepository(User).save(user);
@@ -67,6 +81,7 @@ export const usersService = {
     getUsers,
     getUserById,
     getUserByEmail,
+    checkIfEmailIsTaken,
     createUser,
     updateUser,
     deleteUser,
