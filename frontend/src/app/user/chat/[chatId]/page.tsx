@@ -1,9 +1,5 @@
-"use client";
+import { ChatComponent } from "@/components/Chat/ChatComponent";
 
-import { useParams } from "next/navigation";
-
-export default function Chat() {
-  const { chatId } = useParams();
-
-  return <h1>Chat Page with id {chatId}</h1>;
+export default function ChatPage() {
+  return <ChatComponent />;
 }
