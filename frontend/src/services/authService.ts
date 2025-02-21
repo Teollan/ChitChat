@@ -1,5 +1,5 @@
 import { User } from "@/types/userTypes";
-import { api } from "./apiService";
+import { api } from "@/axios/api";
 
 const ROUTES = {
   LOGIN: "/auth/login",

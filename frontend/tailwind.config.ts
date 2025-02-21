@@ -25,6 +25,9 @@ export default {
           primary: colors.blue[500],
           secondary: colors.slate[600],
         },
+        destructive: {
+          DEFAULT: colors.red[500],
+        },
       },
     },
   },

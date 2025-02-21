@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import { ElementType, ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 const typographyVariants = tv({
@@ -30,7 +30,7 @@ const typographyVariants = tv({
 interface TypographyProps extends VariantProps<typeof typographyVariants> {
   as?: ElementType;
   className?: string;
-  children: React.ReactNode;
+  children?: ReactNode;
 }
 
 export function Typography({
@@ -41,6 +41,8 @@ export function Typography({
   className,
 }: TypographyProps) {
   return (
-    <Tag className={typographyVariants({ variant, align, className })}>{children}</Tag>
+    <Tag className={typographyVariants({ variant, align, className })}>
+      {children}
+    </Tag>
   );
 }

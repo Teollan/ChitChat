@@ -1,4 +1,4 @@
-import { api } from "./apiService";
+import { api } from "@/axios/api";
 
 const ROUTES = {
   SIGN_UP: "/auth/signup",
