@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import { tv } from "tailwind-variants";
 
 export const linkVariants = tv({
-  base: "text-inherit underline hover:text-foreground-primary",
+  base: "text-inherit hover:underline hover:text-foreground-primary",
 });
 
 export const Link = forwardRef<

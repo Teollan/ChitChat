@@ -7,6 +7,7 @@ const typographyVariants = tv({
       h1: "text-4xl font-bold",
       h2: "text-2xl font-semibold",
       h3: "text-lg font-semibold",
+      h4: "text-base font-semibold",
       p: "text-base",
       small: "text-sm text-gray-600",
     },
